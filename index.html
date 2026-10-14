@@ -1,0 +1,174 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My cyber business card</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="proto-banner" class="proto-banner" role="status">
+      <span>🚧 This site is a student prototype built for a web course. The contact form works, but please don't send private information.</span>
+      <button type="button" id="proto-close" aria-label="Close message">×</button>
+    </div>
+
+    <header>
+      <div class="avatar" id="site-avatar" aria-hidden="true">BK</div>
+      <h1 id="site-name">Bashar Khatib</h1>
+      <p id="site-role">cyber student</p>
+    </header>
+    <button type="button" id="theme-toggle">🌙 Dark</button>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#writeups">Writeups</a>
+      <a href="#certs">Certs</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <main>
+      <section id="about">
+        <h2>About</h2>
+        <div id="site-about">
+          <p>
+            "I'm a software engineering student focused on backend and systems
+            programming in C, Java, and Python, currently building out my
+            networking and cybersecurity fundamentals through CCNA and eJPTv2
+            prep — this card is where I'm tracking that journey."
+          </p>
+        </div>
+      </section>
+      <section id="skills">
+        <h2>Skills</h2>
+        <table border="1">
+          <thead>
+            <tr>
+              <th>Area</th>
+              <th>Tools / notes</th>
+              <th>Where I used it</th>
+            </tr>
+          </thead>
+          <tbody id="site-skills-body">
+            <tr>
+              <td>Linux</td>
+              <td>Command line, permissions</td>
+              <td>Linux Fundamentals labs</td>
+            </tr>
+            <tr>
+              <td>Networking</td>
+              <td>OSI model, Wireshark, packet capture</td>
+              <td>CCNA prep, class packet captures</td>
+            </tr>
+            <tr>
+              <td>Programming</td>
+              <td>C, Java, Python</td>
+              <td>Backend/systems coursework, log-analysis-api project</td>
+            </tr>
+            <tr>
+              <td>Security fundamentals</td>
+              <td>nmap, log analysis, basic recon</td>
+              <td>eJPTv2 prep, log-analysis-api project</td>
+            </tr>
+          </tbody>
+        </table>
+        <ul>
+          <li>Linux</li>
+          <li>Networking / CCNA</li>
+          <li>Python</li>
+          <li>nmap</li>
+          <li>Wireshark</li>
+        </ul>
+      </section>
+      <section id="writeups">
+        <h2>Writeups</h2>
+
+        <div class="filters">
+          <button type="button" class="filter" data-filter="all">All</button>
+          <button type="button" class="filter" data-filter="recon">
+            Recon
+          </button>
+          <button type="button" class="filter" data-filter="networking">
+            Networking
+          </button>
+        </div>
+
+        <div id="writeup-list">
+          <article data-tag="recon">
+            <h3>Linux Auth Log Analyzer</h3>
+            <p class="meta">Class VM · 2026</p>
+            <p>
+              Authorized lab work. Built a Python tool that parses Linux
+              authentication logs to detect brute-force login attempts and flag
+              suspicious user behavior. Focused on pattern detection in log
+              data, not live exploitation.
+            </p>
+            <p>
+              <a href="writeup.html?file=your-note.pdf">View PDF</a>
+              ·
+              <a href="writeups/your-note.pdf" download>Download</a>
+              (add a real PDF in a <code>writeups</code> folder when you have
+              one)
+            </p>
+          </article>
+          <article data-tag="networking">
+            <h3>Enterprise Network Configuration Lab</h3>
+            <p class="meta">Cisco Packet Tracer lab · 2026</p>
+            <p>
+              Designed and simulated an enterprise network topology in Cisco
+              Packet Tracer, using VLANs, OSPF dynamic routing, NAT, and ACLs
+              for traffic segmentation and security.
+            </p>
+            <p>
+              <a href="writeup.html?file=enterprise-network.pdf">View PDF</a>
+              ·
+              <a href="writeups/enterprise-network.pdf" download>Download</a>
+              (add a real PDF in a <code>writeups</code> folder when you have
+              one)
+            </p>
+          </article>
+        </div>
+      </section>
+      <section id="certs">
+        <h2>Certs / in progress</h2>
+        <ul id="site-certs">
+          <li>This course: Web Fundamentals</li>
+         <li>CCNA — studying</li>
+<li>eJPTv2 — studying</li>
+        </ul>
+      </section>
+      <section id="contact">
+        <h2>Contact</h2>
+        <form id="contact-form" action="php/contact.php" method="POST">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required />
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+          <input
+            type="text"
+            id="company"
+            name="company"
+            style="display: none"
+            autocomplete="off"
+            tabindex="-1"
+          />
+          <input type="hidden" name="csrf" id="csrf" value="" />
+          <button type="submit">Send</button>
+        </form>
+      </section>
+    </main>
+    <footer>
+      <p>© 2026 Bashar Khatib · Classroom portfolio — not a production site.</p>
+      <p>
+        <a id="link-github" href="https://github.com/221-bashar">GitHub</a>
+        ·
+        <a id="link-linkedin" href="https://www.linkedin.com/in/bashar-khatib"
+          >LinkedIn</a
+        >
+      </p>
+      <p><a href="login.html">Studio Login</a></p>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>

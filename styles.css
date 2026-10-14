@@ -1,0 +1,170 @@
+:root {
+    --bg: #0f172a;
+    --text: #e2e8f0;
+    --panel: #1e293b;
+    --accent: #38bdf8;
+}
+
+body.light-theme {
+    --bg: #f8fafc;
+    --text: #0f172a;
+    --panel: #e2e8f0;
+    --accent: #0284c7;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 4.5rem;
+}
+
+section[id] {
+    scroll-margin-top: 4.5rem;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    background: var(--bg);
+    color: var(--text);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.avatar {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    background: #0ea5e9;
+    color: #0b1220;
+    overflow: hidden;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.5rem 0.75rem;
+    background: #020617;
+    overflow-x: auto;
+}
+
+nav a {
+    color: #7dd3fc;
+    text-decoration: none;
+    padding: 0.5rem 0.75rem;
+    white-space: nowrap;
+}
+
+nav a:hover,
+nav a.is-current {
+    background: var(--panel);
+    color: #fff;
+}
+
+main {
+    max-width: 56rem;
+    margin: 0 auto;
+    padding: 1.5rem 1.25rem 3rem;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1rem 0;
+}
+
+th,
+td {
+    border: 1px solid #334155;
+    padding: 10px;
+}
+
+form {
+    max-width: 28rem;
+}
+
+input,
+textarea {
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 8px;
+}
+
+input:focus,
+textarea:focus {
+    outline: 2px solid var(--accent);
+}
+
+@media (max-width: 600px) {
+    header {
+        text-align: center;
+    }
+}
+
+header,
+footer,
+article {
+    background: var(--panel);
+    color: var(--text);
+    padding: 1.5rem 1.25rem;
+}
+
+article {
+    margin-bottom: 1.5rem;
+}
+
+thead {
+    background: #334155;
+    color: var(--text);
+}
+
+.is-hidden {
+    display: none;
+}
+
+.proto-banner {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    background: #f5b301;
+    color: #1a1a1a;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+.proto-banner button {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: inherit;
+}
+
+.proto-banner[hidden] {
+    display: none;
+}

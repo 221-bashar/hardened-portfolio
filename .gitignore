@@ -1,0 +1,19 @@
+# Secrets: each machine has its own config.php
+php/config.php
+
+# Private notes and course material
+issues.txt
+notes.md
+Project-Exercises-portfolio.md
+.obsidian/
+
+# SQL files can contain passwords
+*.sql
+
+# Old practice files, not part of the site
+/arrays.php
+/hello.php
+/pass_fail.php
+/contact.php
+/search.php
+php/search.php
