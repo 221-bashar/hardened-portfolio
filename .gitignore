@@ -17,3 +17,9 @@ Project-Exercises-portfolio.md
 /contact.php
 /search.php
 php/search.php
+
+# Never commit credentials
+password*
+*.key
+*.pem
+.env
