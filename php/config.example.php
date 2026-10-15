@@ -9,9 +9,6 @@ $db_pass = "CHANGE_ME";
 $db_name = "business_card";
 $db_port = 3306;
 
-// true only on your own computer. On any public server it must be false.
-$lab_studio = false;
-
 $mysqli = new mysqli($db_host, $db_user, $db_pass, $db_name, $db_port);
 if ($mysqli->connect_errno) {
     http_response_code(500);

@@ -11,29 +11,33 @@ Live at **https://basharkhatib.me**
 ## Security
 | Threat | Protection | Where |
 |---|---|---|
-| SQL injection | Prepared statements with bound parameters | `php/contact.php`, `php/login.php` |
-| Cross-site scripting (XSS) | Output escaping with `htmlspecialchars`, plus a Content-Security-Policy | `php/inbox.php`, nginx |
+| SQL injection | Prepared statements with bound parameters | `php/contact.php` |
+| Cross-site scripting (XSS) | Content-Security-Policy; no user input is ever shown on the site | nginx |
 | Cross-site request forgery (CSRF) | Per-session secret token checked on every form | `php/security.php`, `php/csrf.php` |
 | Spam bots | Hidden honeypot field | `php/contact.php` |
-| Skipping the login | `require_login()` gate on every protected page | `php/security.php`, `php/inbox.php` |
-| Password guessing | Lockout after 5 failed logins per IP in 15 minutes | `php/security.php`, `php/login.php` |
-| Session hijacking / fixation | `HttpOnly`, `SameSite=Lax`, `Secure` cookies, new session ID at login, 30-minute idle timeout | `php/security.php` |
-| Stolen passwords | Only bcrypt hashes stored (`password_hash`) | `php/create_user.php` |
-| Account creation by visitors | User script runs from the terminal only | `php/create_user.php` |
-| Leaked secrets | `config.php` never committed, random DB password on the server | `.gitignore`, `php/config.example.php` |
-| Database exposure | DB user limited to `SELECT, INSERT`; MariaDB listens on 127.0.0.1 only | server |
-| Private area on the public server | Studio switched off by a per-machine flag (fails closed) | `php/config.php` |
+| Admin-panel attacks (brute force, login bypass) | No login or admin area on the web at all; messages are read over SSH | design decision |
+| Session hijacking | `HttpOnly`, `SameSite=Lax`, `Secure` cookies | `php/security.php` |
+| Leaked secrets | `config.php` never committed, random DB password on the server, rotated after exposure | `.gitignore`, `php/config.example.php` |
+| Database exposure | Least-privilege DB user; MariaDB listens on 127.0.0.1 only | server |
 | Clickjacking, MIME sniffing, downgrade | `X-Frame-Options`, `nosniff`, HSTS, Referrer-Policy, Permissions-Policy | nginx |
 | Version fingerprinting | `server_tokens off`, `expose_php = Off` | nginx, PHP |
 | Network attack surface | Firewall allows only ports 22, 80, 443; SSH with keys only | DigitalOcean |
 | Known vulnerabilities | Automatic security updates | `unattended-upgrades` |
 
+### Why there is no login
+An earlier version had a studio login and inbox, kept on purpose as a course exercise in finding vulnerabilities.
+I first hardened it (login gate, brute-force lockout, session regeneration), then removed it completely:
+a feature that doesn't exist can't be attacked. Messages are read on the server over SSH:
+
+```
+mariadb -e "SELECT id, name, email, message, created_at FROM business_card.messages;"
+```
+
 ## Run it locally
 1. Install PHP 8.3 (with `mysqli`) and MariaDB.
-2. Create the database and tables, and a `webapp` user.
-3. Copy `php/config.example.php` to `php/config.php`, fill in your values, and set `$lab_studio = true`.
-4. Create your login: `php php/create_user.php <username>`
-5. Start the server: `php -S localhost:8000 -t .`
+2. Create the database, the `messages` table and a `webapp` user.
+3. Copy `php/config.example.php` to `php/config.php` and fill in your values.
+4. Start the server: `php -S localhost:8000 -t .`
 
 ## Next steps
 - Redesign with a new layout and a projects section
