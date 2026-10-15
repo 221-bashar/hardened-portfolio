@@ -145,13 +145,14 @@
           <input type="email" id="email" name="email" required />
           <label for="message">Message</label>
           <textarea id="message" name="message" required></textarea>
-          <input
+            <input
             type="text"
             id="company"
             name="company"
-            style="display: none"
+            class="hp"
             autocomplete="off"
             tabindex="-1"
+            aria-hidden="true"
           />
           <input type="hidden" name="csrf" id="csrf" value="" />
           <button type="submit">Send</button>
