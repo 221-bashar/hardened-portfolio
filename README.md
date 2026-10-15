@@ -18,7 +18,7 @@ Live at **https://basharkhatib.me**
 | Admin-panel attacks (brute force, login bypass) | No login or admin area on the web at all; messages are read over SSH | design decision |
 | Session hijacking | `HttpOnly`, `SameSite=Lax`, `Secure` cookies | `php/security.php` |
 | Leaked secrets | `config.php` never committed, random DB password on the server, rotated after exposure | `.gitignore`, `php/config.example.php` |
-| Database exposure | Least-privilege DB user; MariaDB listens on 127.0.0.1 only | server |
+| Database exposure | DB user can only `INSERT` into the `messages` table (cannot read, change or delete); MariaDB listens on 127.0.0.1 only | server |
 | Clickjacking, MIME sniffing, downgrade | `X-Frame-Options`, `nosniff`, HSTS, Referrer-Policy, Permissions-Policy | nginx |
 | Version fingerprinting | `server_tokens off`, `expose_php = Off` | nginx, PHP |
 | Network attack surface | Firewall allows only ports 22, 80, 443; SSH with keys only | DigitalOcean |
@@ -35,10 +35,11 @@ mariadb -e "SELECT id, name, email, message, created_at FROM business_card.messa
 
 ## Run it locally
 1. Install PHP 8.3 (with `mysqli`) and MariaDB.
-2. Create the database, the `messages` table and a `webapp` user.
+2. Create the database, the `messages` table and a `webapp` user with `INSERT` on that table only.
 3. Copy `php/config.example.php` to `php/config.php` and fill in your values.
 4. Start the server: `php -S localhost:8000 -t .`
 
 ## Next steps
 - Redesign with a new layout and a projects section
+- Server-side input limits and a rate limit on the contact form
 - Move the honeypot's inline style into CSS so the CSP can drop `'unsafe-inline'`
