@@ -12,9 +12,9 @@ Live at **https://basharkhatib.me**
 | Threat | Protection | Where |
 |---|---|---|
 | SQL injection | Prepared statements with bound parameters | `php/contact.php` |
-| Cross-site scripting (XSS) | Content-Security-Policy; no user input is ever shown on the site; plain-text responses | nginx, `php/contact.php` |
+| Cross-site scripting (XSS) | Strict Content-Security-Policy (no inline scripts or styles at all); no user input is ever shown on the site; plain-text responses | nginx, `php/contact.php` |
 | Cross-site request forgery (CSRF) | Per-session secret token checked on every form | `php/security.php`, `php/csrf.php` |
-| Spam bots | Hidden honeypot field | `php/contact.php` |
+| Spam bots | Off-screen honeypot field, hidden from screen readers | `php/contact.php`, `styles.css` |
 | Inbox flooding | nginx rate limit: 5 messages per minute per IP (429 above that), requests capped at 16 KB | nginx |
 | Junk or oversized input | Server-side checks: text only, length limits, real email validation | `php/contact.php` |
 | Admin-panel attacks (brute force, login bypass) | No login or admin area on the web at all; messages are read over SSH | design decision |
@@ -23,7 +23,8 @@ Live at **https://basharkhatib.me**
 | Database exposure | DB user can only `INSERT` into the `messages` table (cannot read, change or delete); MariaDB listens on 127.0.0.1 only | server |
 | Clickjacking, MIME sniffing, downgrade | `X-Frame-Options`, `nosniff`, HSTS, Referrer-Policy, Permissions-Policy | nginx |
 | Version fingerprinting | `server_tokens off`, `expose_php = Off` | nginx, PHP |
-| Network attack surface | Firewall allows only ports 22, 80, 443; SSH with keys only | DigitalOcean |
+| Server takeover | SSH with keys only; root login disabled; admin work through a normal user with a `sudo` password | `sshd_config.d` |
+| Network attack surface | Firewall allows only ports 22, 80, 443 | DigitalOcean |
 | Known vulnerabilities | Automatic security updates | `unattended-upgrades` |
 
 ### Why there is no login
@@ -32,7 +33,7 @@ I first hardened it (login gate, brute-force lockout, session regeneration), the
 a feature that doesn't exist can't be attacked. Messages are read on the server over SSH:
 
 ```
-mariadb -e "SELECT id, name, email, message, created_at FROM business_card.messages;"
+sudo mariadb -e "SELECT id, name, email, message, created_at FROM business_card.messages;"
 ```
 
 ## Run it locally
@@ -43,4 +44,3 @@ mariadb -e "SELECT id, name, email, message, created_at FROM business_card.messa
 
 ## Next steps
 - Redesign with a new layout and a projects section
-- Move the honeypot's inline style into CSS so the CSP can drop `'unsafe-inline'`
