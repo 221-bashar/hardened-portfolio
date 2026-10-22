@@ -26,3 +26,4 @@
 ## 2026-10-12
 - Droplet created; nginx, PHP 8.3, MariaDB installed; firewall 22/80/443
 - Site deployed; HTTPS with Let's Encrypt for basharkhatib.me
+- Database password rotated as a precaution after the PHP2Shell exposure window
