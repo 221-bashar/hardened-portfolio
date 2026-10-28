@@ -1,10 +1,13 @@
 <!doctype html>
-
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My cyber business card</title>
+    <title>Bashar Khatib · Software Engineering Student</title>
+    <meta
+      name="description"
+      content="Bashar Khatib, Software Engineering student: backend, DevOps and cyber security projects."
+    />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -16,14 +19,14 @@
     <header>
       <div class="avatar" id="site-avatar" aria-hidden="true">BK</div>
       <h1 id="site-name">Bashar Khatib</h1>
-      <p id="site-role">cyber student</p>
+      <p id="site-role">Software Engineering Student · Backend · DevOps · Cyber Security</p>
     </header>
     <button type="button" id="theme-toggle">🌙 Dark</button>
     <nav>
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
-      <a href="#writeups">Writeups</a>
-      <a href="#certs">Certs</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
       <a href="#contact">Contact</a>
     </nav>
     <main>
@@ -31,121 +34,206 @@
         <h2>About</h2>
         <div id="site-about">
           <p>
-            "I'm a software engineering student focused on backend and systems
-            programming in C, Java, and Python, currently building out my
-            networking and cybersecurity fundamentals through CCNA and eJPTv2
-            prep — this card is where I'm tracking that journey."
+            I'm a Software Engineering student at the Open University of Israel,
+            currently completing two parallel professional bootcamps: Cyber Security
+            and DevOps. My hands-on background covers backend development (Java /
+            Spring Boot, REST APIs), low-level systems programming in C on Linux,
+            web application security, and Windows and network infrastructure.
           </p>
+          <p>
+            I'm looking for a student or junior position in backend development,
+            DevOps, QA automation or SOC / blue team, part-time alongside my studies.
+          </p>
+          <p>Languages: Arabic (native) · Hebrew (fluent) · English (advanced)</p>
         </div>
       </section>
+
       <section id="skills">
         <h2>Skills</h2>
-        <table border="1">
+        <table>
           <thead>
             <tr>
               <th>Area</th>
-              <th>Tools / notes</th>
-              <th>Where I used it</th>
+              <th>Tools and topics</th>
             </tr>
           </thead>
           <tbody id="site-skills-body">
             <tr>
-              <td>Linux</td>
-              <td>Command line, permissions</td>
-              <td>Linux Fundamentals labs</td>
+              <td>Languages</td>
+              <td>C (systems programming), Java, Python, Bash / Shell, SQL, PHP, JavaScript, HTML / CSS</td>
+            </tr>
+            <tr>
+              <td>Backend &amp; Web</td>
+              <td>Spring Boot, REST APIs, OpenAPI, JSON, Maven, PHP with MySQL / MariaDB</td>
+            </tr>
+            <tr>
+              <td>DevOps &amp; Cloud</td>
+              <td>Docker, Git &amp; GitHub, Linux server deployment (DigitalOcean), nginx, VMware</td>
+            </tr>
+            <tr>
+              <td>Systems</td>
+              <td>Linux administration &amp; automation, process and memory management, Windows Server 2016, GDB, GCC, Make</td>
             </tr>
             <tr>
               <td>Networking</td>
-              <td>OSI model, Wireshark, packet capture</td>
-              <td>CCNA prep, class packet captures</td>
+              <td>TCP/IP, VLANs, OSPF, NAT, ACLs, Cisco Packet Tracer</td>
             </tr>
             <tr>
-              <td>Programming</td>
-              <td>C, Java, Python</td>
-              <td>Backend/systems coursework, log-analysis-api project</td>
+              <td>Security</td>
+              <td>Web app security (XSS, CSRF, SQL injection defenses, secure cookies, CSP), server hardening, Active Directory &amp; GPO hardening, Linux auth-log analysis, brute-force detection, AI guardrail testing</td>
             </tr>
             <tr>
-              <td>Security fundamentals</td>
-              <td>nmap, log analysis, basic recon</td>
-              <td>eJPTv2 prep, log-analysis-api project</td>
+              <td>Testing &amp; Tools</td>
+              <td>pytest, Jira, ClickUp, VS Code, PyCharm, Eclipse</td>
             </tr>
           </tbody>
         </table>
-        <ul>
-          <li>Linux</li>
-          <li>Networking / CCNA</li>
-          <li>Python</li>
-          <li>nmap</li>
-          <li>Wireshark</li>
-        </ul>
       </section>
-      <section id="writeups">
-        <h2>Writeups</h2>
+
+      <section id="projects">
+        <h2>Projects</h2>
 
         <div class="filters">
           <button type="button" class="filter" data-filter="all">All</button>
-          <button type="button" class="filter" data-filter="recon">
-            Recon
-          </button>
-          <button type="button" class="filter" data-filter="networking">
-            Networking
-          </button>
+          <button type="button" class="filter" data-filter="security">Security</button>
+          <button type="button" class="filter" data-filter="systems">Systems</button>
+          <button type="button" class="filter" data-filter="devops">DevOps &amp; Automation</button>
+          <button type="button" class="filter" data-filter="networking">Networking</button>
         </div>
 
         <div id="writeup-list">
-          <article data-tag="recon">
-            <h3>Linux Auth Log Analyzer</h3>
-            <p class="meta">Class VM · 2026</p>
+          <article data-tag="security">
+            <h3>Hardened Portfolio: this website</h3>
+            <p class="meta">PHP · MariaDB · nginx · Linux · DigitalOcean</p>
             <p>
-              Authorized lab work. Built a Python tool that parses Linux
-              authentication logs to detect brute-force login attempts and flag
-              suspicious user behavior. Focused on pattern detection in log
-              data, not live exploitation.
+              Built this site and deployed it to my own Linux server, then ran a security
+              review and fixed what I found: CSRF tokens, prepared statements, strict
+              Content-Security-Policy, rate limiting, server-side input validation, an
+              insert-only database user, no admin area on the web, and keys-only SSH with
+              root login disabled. Patched and checked the server during the PHP2Shell
+              vulnerability (CVE-2026-109618).
+            </p>
+            <p><a href="https://github.com/221-bashar/hardened-portfolio">Code on GitHub</a></p>
+          </article>
+
+          <article data-tag="security">
+            <h3>Log Analysis API</h3>
+            <p class="meta">Python · REST · Docker</p>
+            <p>
+              Containerised REST API that parses Linux auth logs, detects brute-force and
+              intrusion patterns with rule-based anomaly detection, and shows alerts on a
+              web dashboard.
+            </p>
+            <p><a href="https://github.com/221-bashar/log-analysis-api">Code on GitHub</a></p>
+          </article>
+
+          <article data-tag="systems">
+            <h3>Two-Pass Assembler</h3>
+            <p class="meta">C · Linux · GDB</p>
+            <p>
+              A full two-pass assembler for a custom assembly language: macro
+              preprocessing, symbol-table generation, instruction encoding and
+              <code>.ob</code> / <code>.ext</code> / <code>.ent</code> output files.
+              Manual memory management and pointer-based data structures, debugged with GDB.
+            </p>
+            <p><a href="https://github.com/221-bashar/assembler-c-project">Code on GitHub</a></p>
+          </article>
+
+          <article data-tag="systems">
+            <h3>xv6 Operating System Labs</h3>
+            <p class="meta">C · Linux</p>
+            <p>
+              Extensions to the xv6 Unix-like kernel: process management, new system calls
+              and memory handling.
             </p>
             <p>
-              <a href="writeup.html?file=your-note.pdf">View PDF</a>
+              <a href="https://github.com/221-bashar/xv6-02">xv6-02</a>
               ·
-              <a href="writeups/your-note.pdf" download>Download</a>
-              (add a real PDF in a <code>writeups</code> folder when you have
-              one)
+              <a href="https://github.com/221-bashar/xv6-03">xv6-03</a>
             </p>
           </article>
+
+          <article data-tag="devops">
+            <h3>netmon-autotest</h3>
+            <p class="meta">Python · pytest</p>
+            <p>
+              Test automation suite that simulates network-switch telemetry and runs
+              automated regression checks over the generated data.
+            </p>
+            <p><a href="https://github.com/221-bashar/netmon-autotest">Code on GitHub</a></p>
+          </article>
+
+          <article data-tag="devops">
+            <h3>Northstar Labs Operations Toolkit</h3>
+            <p class="meta">Bash · Linux</p>
+            <p>
+              Shell automation toolkit scripting real Linux operational workflows. Final
+              project of the Linux Fundamentals automation track.
+            </p>
+            <p><a href="https://github.com/221-bashar/lf_final_project">Code on GitHub</a></p>
+          </article>
+
+          <article data-tag="security">
+            <h3>ForgeLab: Active Directory Domain Lab</h3>
+            <p class="meta">VMware · Windows Server 2016</p>
+            <p>
+              A full AD domain with OU design, group permissions, DNS and DHCP, and
+              hardened Group Policy objects, with security event monitoring reviewed from a
+              blue-team perspective.
+            </p>
+            <p><a href="https://github.com/221-bashar/forgelab-domain-lab">Code on GitHub</a></p>
+          </article>
+
           <article data-tag="networking">
             <h3>Enterprise Network Configuration Lab</h3>
-            <p class="meta">Cisco Packet Tracer lab · 2026</p>
+            <p class="meta">Cisco Packet Tracer</p>
             <p>
-              Designed and simulated an enterprise network topology in Cisco
-              Packet Tracer, using VLANs, OSPF dynamic routing, NAT, and ACLs
-              for traffic segmentation and security.
+              A multi-site enterprise topology with VLAN segmentation, OSPF dynamic
+              routing, NAT and ACL-based traffic control.
             </p>
+            <p><a href="https://github.com/221-bashar/221-bashar-Final-Network-Configuration-Lab">Code on GitHub</a></p>
+          </article>
+
+          <article data-tag="security">
+            <h3>AI Guardrail Tester</h3>
+            <p class="meta">Python</p>
             <p>
-              <a href="writeup.html?file=enterprise-network.pdf">View PDF</a>
-              ·
-              <a href="writeups/enterprise-network.pdf" download>Download</a>
-              (add a real PDF in a <code>writeups</code> folder when you have
-              one)
+              Stress-tested a security-focused AI assistant against jailbreaks, social
+              engineering and data-extraction prompts, then implemented and evaluated
+              guardrails.
             </p>
           </article>
         </div>
       </section>
-      <section id="certs">
-        <h2>Certs / in progress</h2>
+
+      <section id="education">
+        <h2>Education &amp; Training</h2>
         <ul id="site-certs">
-          <li>This course: Web Fundamentals</li>
-         <li>CCNA — studying</li>
-<li>eJPTv2 — studying</li>
+          <li><strong>B.Sc. Software Engineering</strong>, The Open University of Israel (expected 2028)</li>
+          <li>
+            <strong>DevOps Bootcamp</strong> (in progress): CI/CD with Jenkins, Docker and
+            Kubernetes, Spring Boot microservices, REST / OpenAPI, Git workflows, Jira and ClickUp
+          </li>
+          <li>
+            <strong>Cyber Security Bootcamp</strong> (full-year, in progress): networking and
+            Linux, Windows Server and Active Directory, Python for security, web application
+            security, SOC and threat intelligence
+          </li>
+          <li><strong>Linux Fundamentals: Automation Track</strong> (completed)</li>
+          <li>Studying for: eJPTv2, CCNA</li>
         </ul>
       </section>
+
       <section id="contact">
         <h2>Contact</h2>
         <form id="contact-form" action="php/contact.php" method="POST">
           <label for="name">Name</label>
-          <input type="text" id="name" name="name" required />
+          <input type="text" id="name" name="name" maxlength="100" required />
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" required />
+          <input type="email" id="email" name="email" maxlength="254" required />
           <label for="message">Message</label>
-          <textarea id="message" name="message" required></textarea>
-            <input
+          <textarea id="message" name="message" maxlength="5000" required></textarea>
+          <input
             type="text"
             id="company"
             name="company"
@@ -160,15 +248,12 @@
       </section>
     </main>
     <footer>
-      <p>© 2026 Bashar Khatib · Classroom portfolio — not a production site.</p>
+      <p>© 2026 Bashar Khatib · Student portfolio</p>
       <p>
         <a id="link-github" href="https://github.com/221-bashar">GitHub</a>
         ·
-        <a id="link-linkedin" href="https://www.linkedin.com/in/bashar-khatib"
-          >LinkedIn</a
-        >
+        <a id="link-linkedin" href="https://www.linkedin.com/in/bashar-khatib">LinkedIn</a>
       </p>
-     
     </footer>
     <script src="script.js"></script>
   </body>
